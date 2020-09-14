@@ -4,28 +4,21 @@ let a = [1,2,3, 'hello',4,5] ;
 let b = [1,2,3, true, 4, undefined, 6] ;
 
 
-function compareArr(a,b){
-	var sumA = a.reduce(function(sum,item){
-		if(isNaN(item)||typeof(item)==="boolean"){
-			item=0;
-		}else{
-			item=item;
-		}
-		return sum +item;
-	},0);
-	console.log('Сумма чисел массива а: ',sumA);
-	
-	var sumB = b.reduce(function(sum,item){
-		if(isNaN(+item)||typeof(item)==="boolean"){
-			item=0;
-		}else{
-			item=item;
-		}
-		return sum +item;
-	},0);
-	console.log('Сумма чисел массива в: ',sumB);
-	return (sumA<sumB)?b:a;
-	
+
+function greatestArr(arr,arr1){
+	let summArr=arrSumm(arr),
+		 summArr1=arrSumm(arr1);
+		 return (summArr>summArr1) ? arr: arr1
 }
 
-console.log('Массив с больше суммой чисел :  ',compareArr(a,b));
+function arrSumm(arr){
+	let summArr=arr.reduce((summ,el) =>{
+		el=isNaN(el)||typeof(el)==="boolean" ? 0 :el;
+		return summ+el
+	})
+	console.log(`Сумма массива ${arr} равна - ${summArr}`);
+	return summArr
+}
+	
+console.log('Массив с наибольшей суммой чисел',greatestArr(a,b));
+
